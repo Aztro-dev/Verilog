@@ -41,22 +41,27 @@ module main;
 
   initial begin
     clk = 0;
+    readAddrA = 3'b000;
+    readAddrB = 3'b001;
 
     #0 writeEnable = 1'b1;
     writeAddr = 3'b000;
     writeData = 32'hFEDCBA98;
     clk = ~clk;
 
-    #2 writeEnable = 1'b1;
+    #1 clk = ~clk;
+
+    #1 writeEnable = 1'b1;
     writeAddr = 3'b001;
     writeData = 32'h12345678;
     clk = ~clk;
 
-    #2 readAddrA = 3'b000;
+    #1 writeEnable = 1'b0;
+    readAddrA = 3'b000;
     readAddrB = 3'b001;
     clk = ~clk;
 
-    #2 clk = ~clk;
+    #1 clk = ~clk;
     sum = rdA + rdB;
   end
 endmodule
