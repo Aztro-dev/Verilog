@@ -4,7 +4,7 @@
 module main;
   reg clk;
   reg [31:0] a, b;
-  reg  [ 7:0] opcode;
+  reg [6:0] opcode;
   wire [31:0] result;
 
   alu aluOperation (
@@ -18,7 +18,7 @@ module main;
 
   initial begin
     clk = 0;
-    opcode = 8'b0000_0000;
+    opcode = 7'b000_0000;
     a = 32'hFF00FF00;
     b = 32'h00FF00FF;
   end
