@@ -7,7 +7,7 @@ module main;
   reg [6:0] opcode;
   wire [31:0] result;
 
-  alu aluOperation (
+  alu_reg aluOperation (
       .a(a),
       .b(b),
       .opcode(opcode),
