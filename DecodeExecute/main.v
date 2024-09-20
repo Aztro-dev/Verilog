@@ -1,25 +1,26 @@
 `include "regfile.v"
-`include "alu.v"
+`include "decode.v"
 
 module main;
   reg clk;
-  reg [31:0] a, b;
-  reg [6:0] opcode;
+  reg [31:0] opcode;
   wire [31:0] result;
 
-  alu aluOperation (
-      .a(a),
-      .b(b),
+  decode operation (
+      .clk(clk),
       .opcode(opcode),
       .result(result)
   );
 
-  initial $monitor($time, ":\tclk=%x, a=%x, b=%x, opcode=%b, result=%x", clk, a, b, opcode, result);
+  initial $monitor($time, ":\tclk=%x, opcode=%b, result=%b", clk, opcode, result);
 
   initial begin
     clk = 0;
-    opcode = 7'b000_0000;
-    a = 32'hFF00FF00;
-    b = 32'h00FF00FF;
+    // add r1, r1, r2
+    opcode = 32'b0000000_00000_00001_00000_000_0110011;
+    #1 clk = ~clk;
+    #1 clk = ~clk;
+    #1 clk = ~clk;
+    #1 clk = ~clk;
   end
 endmodule
