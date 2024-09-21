@@ -4,5 +4,5 @@ module alu (
     input  [13:0] opcode,
     output [31:0] result
 );
-  assign result = a | opcode;
+  assign result = a + b;
 endmodule
