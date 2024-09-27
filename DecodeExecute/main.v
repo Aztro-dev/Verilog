@@ -1,12 +1,17 @@
 `include "regfile.v"
 `include "decode.v"
 
+`define BITS
+parameter `BITS N = 32;
+
 module main;
   reg clk;
   reg [31:0] opcode;
-  wire [31:0] result;
+  wire [N - 1:0] result;
 
-  decode operation (
+  decode #(
+      .N(N)
+  ) operation (
       .clk(clk),
       .opcode(opcode),
       .result(result)
