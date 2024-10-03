@@ -1,7 +1,7 @@
 `define BITS
 
 module alu #(
-    parameter `BITS N
+    parameter `BITS N = 32
 ) (
     input  [N-1:0] a,
     input  [N-1:0] b,

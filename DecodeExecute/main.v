@@ -2,9 +2,9 @@
 `include "decode.v"
 
 `define BITS
-parameter `BITS N = 32;
 
 module main;
+  parameter N `BITS = 32;
   reg clk;
   reg [31:0] opcode;
   wire [N - 1:0] result;

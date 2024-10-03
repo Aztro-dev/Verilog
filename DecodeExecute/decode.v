@@ -2,7 +2,7 @@
 `define BITS
 
 module decode #(
-    parameter `BITS N
+    parameter `BITS N = 32
 ) (
     input clk,
     input [31:0] opcode,

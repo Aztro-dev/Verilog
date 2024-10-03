@@ -9,7 +9,7 @@ module regfile (
     output [31:0] rdB
 );
 
-  reg [31:0] regfile[32];
+  reg [31:0] regfile[31:0];
 
   assign rdA = regfile[readAddrA];
   assign rdB = regfile[readAddrB];
