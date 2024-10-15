@@ -1,8 +1,6 @@
 compile: main.v
-	iverilog main.v -o main -g2005-sv
-
-run: main
-	iverilog main.v -o main -g2005-sv
+	iverilog main.v 
+	mv a.out main
 	@./main
 
 clean: main
