@@ -28,7 +28,7 @@ module main;
     clk = 0;
     opcode = opcodes[0];
     for (i = 1; i < 4; i = i + 1) begin
-      #1 clk = ~clk;
+      #1000 clk = ~clk;
       opcode = opcodes[i];
     end
   end
