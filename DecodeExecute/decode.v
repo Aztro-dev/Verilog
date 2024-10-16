@@ -14,6 +14,7 @@ module decode #(
     assign addr_b   = opcode[19:15];
     assign addr_ret = opcode[6:0];
     wire [N-1:0] a, b;
+    /*
     regfile regop (
         .clk(clk),
         .readAddrA(addr_a),
@@ -21,29 +22,20 @@ module decode #(
         .rdA(a),
         .rdB(b)
     );
-    assign a = 32'h01;
-    assign b = 32'h10;
-    wire [13:0] trimmed_opcode;
-    assign trimmed_opcode = {opcode[31:25], opcode[6:0]};
-    alu #(
-        .N(N)
-    ) aluop (
-        .a(a),
-        .b(b),
-        .opcode(trimmed_opcode),
-        .result(result)
-    );
+    */
+    assign a = opcode;
+    assign b = opcode;
 
-    wire write_enable;
-    assign write_enable = 1'b1;
-    regfile store (
-        .clk(clk),
-        .writeEnable(write_enable),
-        .writeAddr(addr_ret),
-        .writeData(result[N-1:0]),
-        .rdA(a),
-        .rdB(b)
-    );
+  wire [13:0] trimmed_opcode;
+  assign trimmed_opcode = {opcode[31:25], opcode[6:0]};
+  alu #(
+    .N(N)
+  ) aluop (
+    .a(a),
+    .b(b),
+    .opcode(trimmed_opcode),
+    .result(result)
+  );
   endgenerate
 
 endmodule

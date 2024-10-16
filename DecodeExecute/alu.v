@@ -12,12 +12,12 @@ module alu #(
   genvar i;
   generate
     for (i = 0; i < N; i = i + 1) begin : gen_add
-      full_adder f (
-          .a(a[i]),
-          .b(b[i]),
-          .cin(carry[i]),
-          .sum(result[i]),
-          .cout(carry[i+1])
+        full_adder f (
+            .a(a[i]),
+            .b(b[i]),
+            .cin(carry[i]),
+            .sum(result[i]),
+            .cout(carry[i+1])
       );
     end
   endgenerate
