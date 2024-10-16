@@ -7,6 +7,7 @@ module main;
   parameter N `BITS = 32;
   reg clk;
   reg [31:0] opcode;
+  reg [31:0] opcodes[3:0];
   wire [N - 1:0] result;
 
   decode #(
@@ -17,15 +18,18 @@ module main;
       .result(result)
   );
 
+  initial $readmemb("rom.mem", opcodes, 0, 3);
+
   initial $monitor($time, ":\tclk=%x, opcode=%b, result=%b", clk, opcode, result);
+
+  integer i;
 
   initial begin
     clk = 0;
-    // add r1, r1, r2
-    opcode = 32'b0000000_00000_00001_00000_000_0110011;
-    #1 clk = ~clk;
-    #1 clk = ~clk;
-    #1 clk = ~clk;
-    #1 clk = ~clk;
+    opcode = opcodes[0];
+    for (i = 1; i < 4; i = i + 1) begin
+      #1 clk = ~clk;
+      opcode = opcodes[i];
+    end
   end
 endmodule
