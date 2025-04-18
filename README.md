@@ -1,1 +1,1 @@
-Note that this repository uses icarus for compilation
+This repository uses icarus for compilation
